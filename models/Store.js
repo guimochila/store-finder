@@ -81,4 +81,38 @@ storeSchema.virtual('reviews', {
   foreignField: 'store',
 });
 
+storeSchema.statics.getTopStores = function() {
+  return this.aggregate([
+    // Lookup Stores and populate their reviews
+    {
+      $lookup: {
+        from: 'reviews',
+        localField: '_id',
+        foreignField: 'store',
+        as: 'reviews',
+      },
+    },
+    // filter for only items that have 2 or more reviews
+    { $match: { 'reviews.1': { $exists: true } } },
+    //  Add the avarage reviews field
+    {
+      $addFields: {
+        averageRating: { $avg: '$reviews.rating' },
+      },
+    },
+    // sort it by our new field, highest reviews first
+    { $sort: { averageRating: -1 } },
+    // limit to at most 10
+    { $limit: 10 },
+  ]);
+};
+
+function autoPopulate(next) {
+  this.populate('reviews');
+  next();
+}
+
+storeSchema.pre('find', autoPopulate);
+storeSchema.pre('findOne', autoPopulate);
+
 module.exports = mongoose.model('Store', storeSchema);
