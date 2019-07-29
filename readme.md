@@ -1,27 +1,26 @@
-## What is this?
+## Store finder
 
-Just you wait folks!
+Create and upload photo about your store and get reviews.
 
-## Sample Data
+## Branch "Original" - tag: v1.0
 
-To load sample data, run the following command in your terminal:
+Tech used in the original version:
 
-```bash
-npm run sample
-```
+* Nodejs
+* Mongodb
+* Fileupload and image compression
+* Email confirmation
+* Pug templating
 
-If you have previously loaded in this data, you can wipe your database 100% clean with:
+## Idea
 
-```bash
-npm run blowitallaway
-```
+Refactor the code using more newest tech stack and update packages, using:
 
-That will populate 16 stores with 3 authors and 41 reviews. The logins for the authors are as follows:
-
-|Name|Email (login)|Password|
-|---|---|---|
-|Wes Bos|wes@example.com|wes|
-|Debbie Downer|debbie@example.com|debbie|
-|Beau|beau@example.com|beau|
-
-
+* React SSR
+* Mongodb
+* GraphQL
+* Fileupload using Cloudnary
+* Redis
+* Docker
+* Continuous Integration
+* Testing
