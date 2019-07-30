@@ -7,7 +7,10 @@
   },
   "scripts": {
     "prod": "node ./start.js",
-    "watch": "nodemon ./start.js --ignore public/",
+    "watch": "nodemon --exec babel-node ./src/start.js --ignore public/",
+    "build:server": "babel -d ./build ./src",
+    "prebuild": "rimraf ./build",
+    "build": "npm run prebuild && npm run build:server",
     "start": "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" --prefix name",
     "assets": "webpack -w --display-max-modules 0",
     "sample": "node ./data/load-sample-data.js",
@@ -49,6 +52,7 @@
     "passport-local": "1.0.0",
     "passport-local-mongoose": "4.0.0",
     "pug": "2.0.0-beta6",
+    "rimraf": "^2.6.3",
     "slugs": "0.1.3",
     "uuid": "3.0.1",
     "validator": "7.0.0"
@@ -57,6 +61,7 @@
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "autoprefixer": "6.7.7",
     "concurrently": "3.4.0",
     "css-loader": "0.28.11",
