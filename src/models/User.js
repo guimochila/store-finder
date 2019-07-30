@@ -1,10 +1,8 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-mongoose.Promise = global.Promise;
-const md5 = require('md5');
-const validator = require('validator');
-const mongodbErrorHandler = require('mongoose-mongodb-errors');
-const passportLocalMongoose = require('passport-local-mongoose');
+import { Schema, model } from 'mongoose';
+import md5 from 'md5';
+import validator from 'validator';
+import mongodbErrorHandler from 'mongoose-mongodb-errors';
+import passportLocalMongoose from 'passport-local-mongoose';
 
 const userSchema = new Schema({
   email: {
@@ -22,7 +20,7 @@ const userSchema = new Schema({
   },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
-  hearts: [{ type: mongoose.Schema.ObjectId, ref: 'Store' }],
+  hearts: [{ type: Schema.ObjectId, ref: 'Store' }],
 });
 
 userSchema.virtual('gravatar').get(function() {
@@ -33,4 +31,4 @@ userSchema.virtual('gravatar').get(function() {
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
 userSchema.plugin(mongodbErrorHandler);
 
-module.exports = mongoose.model('User', userSchema);
+export default model('User', userSchema);

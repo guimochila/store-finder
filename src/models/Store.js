@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-const slug = require('slugs');
+import {Schema, model} from 'mongoose';
+import slug from 'slugs';
 
-const storeSchema = new mongoose.Schema(
+const storeSchema = new Schema(
   {
     name: {
       type: String,
@@ -32,7 +31,7 @@ const storeSchema = new mongoose.Schema(
     },
     photo: String,
     author: {
-      type: mongoose.Schema.ObjectId,
+      type: Schema.ObjectId,
       ref: 'User',
       required: 'You must supply an author',
     },
@@ -115,4 +114,4 @@ function autoPopulate(next) {
 storeSchema.pre('find', autoPopulate);
 storeSchema.pre('findOne', autoPopulate);
 
-module.exports = mongoose.model('Store', storeSchema);
+export default  model('Store', storeSchema);

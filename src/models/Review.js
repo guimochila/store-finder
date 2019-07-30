@@ -1,18 +1,17 @@
-const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
+import {Schema, model} from 'mongoose';
 
-const reviewSchema = new mongoose.Schema({
+const reviewSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
   },
   author: {
-    type: mongoose.Schema.ObjectId,
+    type: Schema.ObjectId,
     ref: 'User',
     required: 'You must supply an author!',
   },
   store: {
-    type: mongoose.Schema.ObjectId,
+    type: Schema.ObjectId,
     ref: 'Store',
     required: 'You must supply an store!',
   },
@@ -35,4 +34,4 @@ function autoPopulate(next) {
 reviewSchema.pre('find', autoPopulate);
 reviewSchema.pre('findOne', autoPopulate);
 
-module.exports = mongoose.model('Review', reviewSchema);
+export default model('Review', reviewSchema);

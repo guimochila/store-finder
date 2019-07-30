@@ -1,18 +1,21 @@
-import  mongoose from 'mongoose';
-
+import mongoose from 'mongoose';
 // import environmental variables from our variables.env file
-require('dotenv').config({ path: 'variables.env' });
+import dotenv from 'dotenv';
+dotenv.config();
 
 // Connect to our Database and handle any bad connections
-mongoose.connect(process.env.DATABASE, {useNewUrlParser: true});
+mongoose.connect(process.env.DATABASE, {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+});
 mongoose.connection.on('error', err => {
   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 });
 
 // READY?! Let's go!
-require('./models/Store');
-require('./models/User');
-require('./models/Review');
+import './models/Store';
+import './models/User';
+import './models/Review';
 
 // Start our app!
 import app from './app';
