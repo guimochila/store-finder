@@ -4489,10 +4489,10 @@ node-sass@^4.7.2:
     stdout-stream "^1.4.0"
     "true-case-path" "^1.0.2"
 
-nodemailer@3.1.5:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-3.1.5.tgz#b87a7bdb6651fe72fd8099ee41e2e4ab60534569"
-  integrity sha1-uHp722ZR/nL9gJnuQeLkq2BTRWk=
+nodemailer@6.4.16:
+  version "6.4.16"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.4.16.tgz#5cb6391b1d79ab7eff32d6f9f48366b5a7117293"
+  integrity sha512-68K0LgZ6hmZ7PVmwL78gzNdjpj5viqBdFqKrTtr9bZbJYj6BRj5W6WGkxXrEnUl3Co3CBXi3CZBUlpV/foGnOQ==
 
 nodemon@^1.18.3:
   version "1.18.9"
